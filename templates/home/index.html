@@ -14,14 +14,14 @@
 					</div>
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
 					<p class="mb-3">
-						{{first.detail |truncatechars:400|safe }}<a href="{% url 'single_blog' first.id %}">Read More</a>
+						{{first.detail |truncatechars:400 }}<a href="{% url 'single_blog' first.id %}">Read More</a>
 					</p>
 				</div>
 				<div class="col-md-6 d-none d-md-block pr-0 pt-5 mt-4" ><img style="background-size: cover;" src="{{ first.image.url }}" alt="">	</div>
 			</div>
 		</div>
 	</div>
-</div>
+</div><br><br>
 
 
 <div class="container">
@@ -48,7 +48,7 @@
 					<a class="text-dark" href="{% url 'single_blog' s_post.id %}"> {{ s_post.title}} </a>
 					</h2>
 					<p class="card-text">
-						{{s_post.detail|truncatechars:200|safe}}
+						{{s_post.detail|truncatechars:250}}<a href="{% url 'single_blog' s_post.id %}">Read More</a>
 					</p>
 					<div>
 						<small class="d-block">
@@ -67,14 +67,13 @@
 		</div>
         
 		<div class="col-lg-6">
-            
-			<div class="flex-md-row mb-4 box-shadow h-xl-300">
+            <div class="flex-md-row mb-4 box-shadow h-xl-300">
 				{% for p in last_post %}
 				<div class="mb-3 d-flex align-items-center">
 					<img height="80" src="{{ p.image_url }}">
 					<div class="pl-3">
 						<h2 class="mb-2 h6 font-weight-bold">
-						<a class="text-dark" href="{% url 'single_blog' p.id %}">{{p.title }}</a>
+						<a class="text-dark" style="text-decoration: none;" href="{% url 'single_blog' p.id %}">{{p.title }}</a>
 						</h2>
 						<div class="card-text text-muted small">
 						</div>
@@ -82,64 +81,57 @@
 					</div>
 				</div>
                 {% endfor %}
-
 			</div>
 		</div>
-        
-	</div>
-</div><br><br><br><br><br><br><br><br>
-
-
-    
-<div class="container">
-	<div class="row justify-content-between">
-		<div class="col-md-8">
-			<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
-
-            {% for p in post %}
-			<div class="mb-3 d-flex justify-content-between">
-				<div class="pr-3">
-					<h2 class="mb-1 h4 font-weight-bold">
-					<a class="text-dark" href="{% url 'single_blog' p.id %}">{{ p.title }}</a>
-					</h2>
-					<p>
-						{{ p.detail |truncatechars:200|safe }}<a href="{% url 'single_blog' p.id %}">Read More</a>
-					</p>
-					<div class="card-text text-muted small">
-                        <!-- {% if p.author.author_image %}
-						    <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
-                        {% else %}
-                            <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
-                        {% endif %} -->
-                        <a class="text-dark badge-light" style="font-weight: bold;" href="{% url 'catagory' p.catagories.slug %}">{{ p.catagories.name.title}} </a>
-                        
+    </div>
+</div><br><br><br><br><br>
+<div class="container mt-6">
+		<div class="row justify-content-between ">
+			<div class="col-md-8">
+				<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
+	
+				{% for p in post %}
+				<div class="mb-3 d-flex justify-content-between">
+					<div class="pr-3">
+						<h2 class="mb-1 h4 font-weight-bold">
+						<a class="text-dark" style="text-decoration: none;" href="{% url 'single_blog' p.id %}">{{ p.title }}</a>
+						</h2>
+						<p>
+							{{ p.detail|truncatechars:200 }}<a href="{% url 'single_blog' p.id %}">Read More</a>
+						</p><br>
+						<div class="card-text text-muted small">
+							<!-- {% if p.author.author_image %}
+								<img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
+							{% else %}
+								<img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
+							{% endif %} -->
+							<a class="text-dark badge-light" style="font-weight: bold;" href="{% url 'catagory' p.catagories.slug %}">{{ p.catagories.name.title}} </a>
+							
+						</div>
+						<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views </small>
 					</div>
-					<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views </small>
-				</div>
-				<img height="120" src="{{ p.image_url }}">
-			</div><br>
-            {% endfor %}
-
-
-		</div>
-		<div class="col-md-4 pl-4">
-            <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
-			<ol class="list-featured">
-				{% for item in popular_list %}
-				<li>
-				<span>
-				<h6 class="font-weight-bold">
-				<a href="{% url 'single_blog' item.id %}" class="text-dark">{{item.title}}</a>
-				</h6>
-				<p class="text-muted">
-
-				</p>
-				</span>
-				</li>
+					<img height="120" src="{{ p.image_url }}">
+				</div><br>
 				{% endfor %}
-			</ol>
+			</div>
+			<div class="col-md-4 pl-4">
+				<h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
+				<ol class="list-featured">
+					{% for item in popular_list %}
+					<li>
+					<span>
+					<h6 class="font-weight-bold">
+					<a href="{% url 'single_blog' item.id %}" class="text-dark" style="text-decoration: none;">{{item.title}}</a>
+					</h6>
+					<p class="text-muted">
+	
+					</p>
+					</span>
+					</li>
+					{% endfor %}
+				</ol>
+			</div>
 		</div>
 	</div>
-</div>
 
 {% endblock %}

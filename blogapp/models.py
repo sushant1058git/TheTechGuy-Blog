@@ -4,6 +4,7 @@ from django.db import models
 import uuid
 from django.db import models
 from dashboard.models import Author
+from ckeditor.fields import RichTextField
 
 
 # Catagory model
@@ -35,7 +36,7 @@ class Blog(models.Model):
     )
 
     title  = models.CharField(max_length=200, null=True)
-    detail = models.TextField(max_length=20000, null=True)
+    detail = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='images/media', null=True, blank=True)
     #catagories = models.ManyToManyField(Catagory)
     catagories = models.ForeignKey(Catagory,on_delete=models.DO_NOTHING, null=True)

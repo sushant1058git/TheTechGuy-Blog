@@ -32,7 +32,7 @@
 					<a class="text-dark" href="">{{ f_post.title }}</a>
 					</h2>
 					<p class="card-text">
-						{{ f_post.detail |truncatechars:200|safe }}
+						{{ f_post.detail |truncatechars:400 }}<a href="{% url 'single_blog' f_post.id %}">Read More</a>
 					</p>
 					<div>
 						{% if f_post.author.author_image %}
@@ -41,11 +41,11 @@
                             <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
                         {% endif %}
                         {{ f_post.author.author.username }} <br>
-						<small class="text-muted">{{f_post.created_at|timesince }} ago ; {{ f_post.visit_count}} views </small>
+						<small class="text-muted">{{f_post.created_at|timesince }} </small>
 					</div>
 				</div>
 			</div>
-			<h5 class="font-weight-bold spanborder"><span>Latest</span></h5>
+			<h5 class="font-weight-bold spanborder"><span>Recent Posts</span></h5>
             {% for p in post %}
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
@@ -53,17 +53,17 @@
 					<a class="text-dark" href="{% url 'single_blog' p.id  %}"> {{ p.title }} </a>
 					</h2>
 					<p>
-                        {{ p.detail |truncatechars:100 }}
+                        {{ p.detail |truncatechars:200 }}<a href="{% url 'single_blog' p.id %}">Read More</a>
 					</p>
 					<div class="card-text text-muted small">
-                        {% if p.author.author_image %}
+                        <!-- {% if p.author.author_image %}
                         <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
                         {% else %}
                         <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
-                        {% endif %}
-                        {{ p.author.author.username }} in <a class="text-dark" href="{% url 'catagory' p.id %}">{{ p.catagories }} </a>
+                        {% endif %} -->
+                        <a class="text-dark badge badge-light font-weight:bold;" href="{% url 'catagory' p.id %}">{{ p.catagories }} </a>
 					</div>
-					<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views</small>
+					<small class="text-muted">{{p.created_at|timesince }} ago</small>
 				</div>
 				<img height="120" src="{{p.image_url}}">
 			</div>
@@ -73,29 +73,31 @@
             {% if post %}
 <!-- pagination -->
             <br>
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        {% if post.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ post.previous_page_number }}"><i class="fas fa-angle-left"></i></a></li>
-        {% endif %}
-
-        {% for i in post.paginator.page_range %}
-        {% if post.number == i %}
-        <li class="page-item"><a class="page-link" href="#">{{ i }}</a></li>
-        {% else %}
-        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-        {% endfor %}
-        {% if post.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ post.next_page_number }}"><i class="fas fa-angle-right"></i></a></li>
-        {% endif %}
-    </ul>
-    </nav>
+<div class="container">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			{% if post.has_previous %}
+			<li class="page-item"><a class="page-link" href="?page={{ post.previous_page_number }}"><i class="fas fa-angle-left"></i></a></li>
+			{% endif %}
+	
+			{% for i in post.paginator.page_range %}
+			{% if post.number == i %}
+			<li class="page-item"><a class="page-link" href="#">{{ i }}</a></li>
+			{% else %}
+			<li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+			{% endif %}
+			{% endfor %}
+			{% if post.has_next %}
+			<li class="page-item"><a class="page-link" href="?page={{ post.next_page_number }}"><i class="fas fa-angle-right"></i></a></li>
+			{% endif %}
+		</ul>
+		</nav>
+</div>
         {% endif %}
 <!-- End paginations -->
 
 
-		</div>
+	</div>
 		<div class="col-md-4 pl-4">
 			<div class="sticky-top">
 				<h5 class="font-weight-bold spanborder"><span>Popular in {{ catagory.name }}</span></h5>
@@ -115,11 +117,7 @@
 				</ol>
 			</div>
 		</div>
-
-
-
 	</div>
-</div>
 
 
     

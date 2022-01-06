@@ -39,7 +39,7 @@
 						</small>
 					</div>
 				</div>
-				<div class="col-md-6 pr-0">
+				<div class="col-md-6 pr-0 mt-6 pt-3">
 					<img src="{{post.image_url }}">
 				</div>
 			</div>
@@ -145,17 +145,17 @@
 					<a class="text-dark" href="{% url 'single_blog' first.id %}"> {{ first.title}} </a>
 					</h2>
 					<p class="card-text">
-						{{first.detail|truncatechars:150}}
+						{{first.detail|truncatechars:200}}<a href="{% url 'single_blog' first.id %}">Read More</a>
 					</p>
 					<div>
 						<small class="d-block">
-						{% if p.author.author_image %}
+						<!-- {% if p.author.author_image %}
 						    <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
                         {% else %}
                             <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
-                        {% endif %}
-						<a class="text-muted" href="./author.html">{{first.author.author.username}}</a></small>
-						<small class="text-muted">{{ first.created_at | timesince }} ago .  {{first.visit_count}} views</small>
+                        {% endif %} -->
+						<a class="text-dark badge-light" style="font-weight: bold;" href="{% url 'catagory' first.catagories.slug %}">{{first.catagories.name.title}}</a></small>
+						<small class="text-muted">{{ first.created_at | timesince }} ago</small>
 					</div>
 				</div>
 			</div>
@@ -170,15 +170,15 @@
 					<img height="80" src="{{p.image_url}}">
 					<div class="pl-3">
 						<h2 class="mb-2 h6 font-weight-bold">
-						<a class="text-dark" href="{% url 'single_blog' p.id %}">{{p.title}}</a>
+						<a class="text-dark" style="text-decoration: none;" href="{% url 'single_blog' p.id %}">{{p.title}}</a>
 						</h2>
 						<div class="card-text text-muted small">
-						{% if p.author.author_image %}
+						<!-- {% if p.author.author_image %}
 						    <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
                         {% else %}
                             <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
-                        {% endif %}
-                        {{ p.author.author.username }} in <a class="text-dark" href="{% url 'catagory' p.id %}">{{p.catagories }} </a>
+                        {% endif %} -->
+							 <a class="text-dark badge badge-light " href="{% url 'catagory' p.id %}">{{p.catagories }} </a>
 						
 						</div>
 						<small class="text-muted">{{ p.created_at | timesince }} ago .  {{p.visit_count}} views</small>
