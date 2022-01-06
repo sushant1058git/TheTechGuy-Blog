@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 import uuid
 from django.db import models
-# from dashboard.models import Author
+from dashboard.models import Author
 
 
 # Catagory model
@@ -42,7 +42,7 @@ class Blog(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     status = models.CharField(max_length=20, choices=status, default='pending')
     #show_hide = models.CharField(max_length=5,choices=visibility, default='show')
-    # author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     featured  = models.BooleanField(default=False)
     visit_count = models.IntegerField(default=0)
     visible = models.BooleanField(default=True)
