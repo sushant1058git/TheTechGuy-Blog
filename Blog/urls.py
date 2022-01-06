@@ -28,7 +28,7 @@ urlpatterns = [
     # app url configs
     path('',include('blogapp.urls')),
     path('dashboard/',include('dashboard.urls')),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
