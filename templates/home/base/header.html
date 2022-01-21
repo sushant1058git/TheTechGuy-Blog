@@ -3,7 +3,7 @@ NAVBAR
 --------------------------------------->
 <nav class="topnav navbar navbar-expand-lg navbar-dark bg-black fixed-top">
   <div class="container">
-    <a class="navbar-brand" style="font-family: cursive;" href="{% url 'home' %}"
+    <a class="navbar-brand" style="font-family:Haettenschweiler;" href="{% url 'home' %}"
       ><strong>The Tech Guy</strong></a
     >
     <button
@@ -79,7 +79,7 @@ NAVBAR
 
         {% endif %} -->
         <li class="nav-item highlight ml-2">
-          <a class="nav-link" href="#"> About Me</a>
+          <a class="nav-link" href="{% url 'about_me' %}"> About Me</a>
         </li>
       </ul>
     </div>

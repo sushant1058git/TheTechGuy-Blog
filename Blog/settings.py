@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # app names
     'dashboard',
     'blogapp',
+    'aboutme',
     'ckeditor',
 ]
 
