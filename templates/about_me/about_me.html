@@ -4,13 +4,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Sushant Sinha</title>
+        <title>The Tech Guy | Sushant Sinha</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
 
         <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+        <link rel="icon" type="image/png" href="{%  static 'images/favicon.ico' %}">
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,6 +25,7 @@
 
         <!-- Customized Bootstrap Stylesheet -->
         <link rel="stylesheet" href="{% static 'css/port.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -38,18 +39,22 @@
                         <div class="typed-text d-none">The Tech Guy, Python Developer, Web Designer, Web Developer</div>
                     </div>
                     <div>
-                        <h6 class="text-muted">Python Developer | SNV Software Services, Bangalore</h6>
+                        <h6 class="text-muted">Python/Django Developer</h6>
+                        <h6 class="text-muted">SNV Software Services, Bangalore</h6>
+                    </div>
+                    <div>
+                        <a href="{% url 'home' %}" >Read My Blogs
                     </div>
                     <div class="d-flex justify-content-center mt-auto mb-3">
-                        <a class="mx-2" href="#"><i class="fab fa-github"></i></a>
-                        <a class="mx-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="mx-2" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="mx-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="mx-2" href="https://github.com/sushant1058git" target ="_blank"><i class="fab fa-github"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-twitter" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-facebook-f" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-linkedin-in" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-instagram" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-youtube" target ="_blank"></i></a>
                     </div>
                     <div class="d-flex align-items-end justify-content-between">
-                        <a href="" class="btn btn-block border-right">Download CV</a>
+                        <a href="{% url 'download_resume' %}" class="btn btn-block border-right">Download CV</a>
                         <a href="#contact" class="btn btn-block btn-scroll">Contact Me</a>
                     </div>
                 </div>
@@ -59,42 +64,48 @@
             </div>
             <div class="content">
                 <!-- About Start -->
+                {% for items in intro %}
                 <div class="container bg-white py-5">
                     <div class="row px-3">
                         <div class="col-12">
                             <h2 class="title position-relative pb-2 mb-4">About Me</h2>
                         </div>
                         <div class="col-12">
-                            <p>Sea et gubergren justo invidunt at amet clita. Justo sit justo tempor et invidunt voluptua, lorem voluptua ipsum gubergren et est nonumy magna et vero, sit eos dolor sea sed et dolor erat et. Accusam accusam magna aliquyam eirmod amet est kasd dolore sanctus. Lorem ea vero lorem eos eos sanctus labore. Aliquyam vero ipsum dolor duo clita consetetur stet, aliquyam ipsum sea sed et magna amet dolor.</p>
+                            <p>{{items.about}}</p>
                             <div class="row">
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Name:</h5> John Doe
+                                    <h5 class="d-inline text-primary" >Name:</h5> {{items.name|title}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Birthday:</h5> 1 April 1990
+                                    <h5 class="d-inline text-primary">Birthday:</h5> {{items.dob}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Degree:</h5> Master
+                                    <h5 class="d-inline text-primary">School:</h5> {{items.school}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Experience:</h5> 10 Years
+                                    <h5 class="d-inline text-primary">College:</h5> {{items.college}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Phone:</h5> +012 345 6789
+                                    <h5 class="d-inline text-primary">Degree:</h5> {{items.degree}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Email:</h5> info@example.com
+                                    <h5 class="d-inline text-primary">Experience:</h5> {{items.experience}} Years
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Address:</h5> 123 Street, New York, USA
+                                    <h5 class="d-inline text-primary">Phone:</h5> {{items.phone}}
                                 </div>
                                 <div class="col-sm-6 py-1">
-                                    <h5 class="d-inline text-primary">Freelance:</h5> Available
+                                    <h5 class="d-inline text-primary">Email:</h5> {{items.email}}
                                 </div>
+                                <div class="col-sm-6">
+                                    <h5 class="d-inline text-primary">Present Address:</h5> {{items.current_address}}
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
                 <!-- About End -->
 
 
@@ -104,64 +115,31 @@
                         <div class="col-12">
                             <h2 class="title position-relative pb-2 mb-4">Skills</h2>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">HTML</p>
-                                    <p class="mb-2">95%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                        {% for skills in skills%}
+                        <div class="row">
+                            <div class="col-sm-5 py-1">
+                                <h5 class="d-inline text-primary" >Language:</h5> {{skills.languages|title}}
                             </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">CSS</p>
-                                    <p class="mb-2">85%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            <div class="col-sm-7 py-1">
+                                <h5 class="d-inline text-primary">Web Framework:</h5> {{skills.framework}}
                             </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">PHP</p>
-                                    <p class="mb-2">90%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                            <div class="col-sm-5 py-1">
+                                <h5 class="d-inline text-primary">Web Design:</h5> {{skills.webdesign}}
+                            </div>
+                            <div class="col-sm-7 py-1">
+                                <h5 class="d-inline text-primary">Libraries:</h5> {{skills.libraries}}
+                            </div>
+                            <div class="col-sm-5 py-1">
+                                <h5 class="d-inline text-primary">Databases:</h5> {{skills.databases}}
+                            </div>
+                            <div class="col-sm-7 py-1">
+                                <h5 class="d-inline text-primary">IDE:</h5> {{skills.ide}}
+                            </div>
+                            <div class="col-sm-6 py-1">
+                                <h5 class="d-inline text-primary">Version Control:</h5> {{skills.versioncontrol}}
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Javascript</p>
-                                    <p class="mb-2">90%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Angular JS</p>
-                                    <p class="mb-2">95%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="skill mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Wordpress</p>
-                                    <p class="mb-2">85%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <!-- Skills End -->
@@ -200,22 +178,7 @@
                 <!-- Education End -->
                 
                 
-                <!-- Subscribe Start -->
-                <div class="container bg-white py-5 px-0">
-                    <div class="bg-primary text-center p-5">
-                        <h1 class="text-white font-weight-bold">Subscribe My Newsletter</h1>
-                        <p class="text-white">Subscribe and get my latest article in your inbox</p>
-                        <form class="form-inline justify-content-center">
-                            <div class="input-group">
-                                <input type="text" class="form-control border-0 p-4" placeholder="Your Email">
-                                <div class="input-group-append">
-                                    <button class="btn btn-dark px-4" type="submit">Subscribe</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Subscribe End -->
+                
 
 
                 <!-- Services Start -->
@@ -361,6 +324,8 @@
                 Testimonial End -->
 
 
+                
+
                 <!-- Contact Start -->
                 <div class="container bg-white py-5" id="contact">
                     <div class="row px-3">
@@ -403,6 +368,32 @@
                     </div>
                 </div>
                 <!-- Contact End -->
+
+                <!-- Subscribe Start -->
+                <div class="border p-5 bg-white">
+                    <div class="row justify-content-between">
+                        <div class="col-md-5 mb-2 mb-md-0">
+                            <h5 class="font-weight-bold secondfont">Subscribe To My Blogs</h5>
+                             Get the latest Blog right in your inbox.
+                        </div>
+                        <div class="col-md-7">
+                            <form action="{% url 'subscribe' %}" method="POST">
+                            <div class="row">
+                                
+                                    {% csrf_token %}
+                                <div class="col-md-12">
+                                    <input type="email" name='subscribe' class="form-control" placeholder="Enter your e-mail address" required>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <button type="submit" class="btn btn-success btn-block">Subscribe</button>
+                                </div>
+                            
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Subscribe End -->
                 
                 
                 <!-- Footer Start -->

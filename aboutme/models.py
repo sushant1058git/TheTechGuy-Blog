@@ -7,6 +7,7 @@ class AboutMe(models.Model):
     dob=models.DateField()
     school=models.CharField(max_length=50,blank=True,null=True)
     college=models.CharField(max_length=50,blank=True,null=True)
+    degree=models.CharField(max_length=100,null=True,blank=True)
     experience=models.CharField(max_length=50,null=True,blank=True)
     phone=models.CharField(max_length=12)
     email=models.EmailField(max_length=50,blank=True,null=True)
@@ -15,8 +16,14 @@ class AboutMe(models.Model):
     
     
 class Skills(models.Model):
-    skill_name=models.CharField(max_length=50,null=True,blank=True)
-    professions=models.CharField(max_length=50,null=True,blank=+True)
+    languages=models.CharField(max_length=50,null=True,blank=True)
+    webdesign=models.CharField(max_length=50,null=True,blank=+True)
+    libraries=models.CharField(max_length=50,null=True,blank=+True)
+    databases=models.CharField(max_length=50,null=True,blank=+True)
+    framework=models.CharField(max_length=50,null=True,blank=+True)
+    ide=models.CharField(max_length=50,null=True,blank=+True)
+    versioncontrol=models.CharField(max_length=50,null=True,blank=+True)
+    
     
 class WorkExp(models.Model):
     comapny_name=models.CharField(max_length=50,null=True,blank=True)

@@ -10,6 +10,7 @@ urlpatterns = [
     path('subscribe/', views.SubsCribe.as_view(), name='subscribe'),
     path('search/',views.SearchView.as_view(), name='search'),
     path('<int:id>/create-comment/',views.CommentView.as_view(), name='comment'),
+    path('download/',views.download_resume, name='download_resume'),
 
     # test
     path('test/', views.test, name='test'),

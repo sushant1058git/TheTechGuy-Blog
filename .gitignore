@@ -93,3 +93,17 @@ db.sqlite3
 !**/migrations
 !**/migrations/__init__.py
 **/images/**
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+*.pyc
+*~
+*.swp
