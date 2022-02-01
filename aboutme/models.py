@@ -1,3 +1,4 @@
+import email
 from django.db import models
 
 # Create your models here.
@@ -46,4 +47,15 @@ class SocialLinks(models.Model):
     instagram=models.URLField(blank=True, null=True)
     youtube=models.URLField(blank=True, null=True)
     twitter=models.URLField(blank=True, null=True)
+    
+    
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100, null=True, verbose_name='Name')
+    email = models.EmailField(null=True)
+    messages = models.TextField()
+    subject = models.CharField(max_length=200, null=True, verbose_name='Subjects' )
+
+    def __str__(self):
+        return self.email
         
