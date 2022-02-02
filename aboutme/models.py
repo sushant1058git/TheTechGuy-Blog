@@ -28,11 +28,14 @@ class Skills(models.Model):
     
 class WorkExp(models.Model):
     comapny_name=models.CharField(max_length=50,null=True,blank=True)
-    join_date=models.DateField()
-    end_date=models.DateField()
+    join_date=models.DateField(null=True,blank=True)
+    end_date=models.DateField(null=True, blank=True)
     project_title=models.CharField(max_length=100)
     project_details=models.TextField(max_length=200,null=True, blank=True)
     designation=models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.comapny_name
     
 class PersonalProjects(models.Model):
     project_name=models.CharField(max_length=200)

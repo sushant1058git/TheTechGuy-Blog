@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/',views.LoginView.as_view(),name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     # app url configs
-    path('',include('blogapp.urls')),
+    path('blog/',include('blogapp.urls')),
     path('aboutme/',include('aboutme.urls')),
     path('dashboard/',include('dashboard.urls')),
     # path('api-auth/', include('rest_framework.urls')),

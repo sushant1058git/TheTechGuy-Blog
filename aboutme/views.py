@@ -15,10 +15,12 @@ from Blog.settings import EMAIL_HOST_USER
 def about_me(request):
     intro=AboutMe.objects.all()
     skills=Skills.objects.all()
-    print(skills)
+    exp=WorkExp.objects.all()[::-1]
+    print(exp)
     context={
         'intro':intro,
-        'skills':skills
+        'skills':skills,
+        'exp':exp
     }
     return render(request,'about_me/about_me.html', context)
 
@@ -37,7 +39,9 @@ def download_resume(request):
     else:
         return HttpResponseNotFound('The requested pdf was not found in our server.')
     
-    
+
+import socket
+            
 def blog_contact(request):
     if request.method == 'POST':
         name=request.POST.get('name')
@@ -46,10 +50,11 @@ def blog_contact(request):
         subject=request.POST.get('subject')
         contact_details=Contact.objects.create(name=name,email=email,messages=message,subject=subject)
         contact_details.save()
+        socket.gethostbyname("")
         try:
             from_email = EMAIL_HOST_USER
             to_email = [contact_details.email,]
-            contact_message = "Thanks for Contacting. I will get back to you soon"
+            contact_message = f"Hey {name}, Thanks for Contacting. I will get back to you soon"
             contact_subject ="Thanks for Contacting !!"
 
             send_mail(
@@ -60,6 +65,7 @@ def blog_contact(request):
                 fail_silently=False,
             )
             messages.success(request,"Thanks for contacting.!!")
+            
 
         except BadHeaderError:
             return HttpResponse('Something Went Wrong!!')
