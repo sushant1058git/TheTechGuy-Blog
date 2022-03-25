@@ -10,6 +10,7 @@
 
     <title>The Tech Guy | Sushant Sinha</title>
 
+    <link rel="icon" type="image/png" href="{%  static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/unicons.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -17,16 +18,10 @@
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}">
+    <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet"> -->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    
-<!--
-
-Tooplate 2115 Marvel
-
-https://www.tooplate.com/view/2115-marvel
-
--->
   </head>
   <body>
 
@@ -85,24 +80,38 @@ https://www.tooplate.com/view/2115-marvel
     </nav>
 
     <!-- ABOUT -->
+    {% if messages %}
+    
+    </div>
+    {% endif %}
     <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
         <div class="container">
+            <div class="messages" >
+                {% for message in messages %}
+                    <div class="alert alert-primary" {% if message.tags %}
+                         class="{{ message.tags }}"{% endif %}>{{ message }}
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+            
+                {% endfor %}
             <div class="row">
                 
-                <div class="col-lg-8 col-md-12 col-12 d-flex align-items-center">
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
                     <div class="about-text">
                         <small class="small-text">Welcome to <span class="mobile-block">my portfolio website!</span></small>
                         <h1 class="animated animated-text">
                             <span class="mr-2">Hey folks, I'm</span>
                                 <div class="animated-info">
-                                    <small class="animated-item">Sushant Sinha</small>
+                                    <span class="animated-item">Sushant Sinha</span>
                                     <small class="animated-item">Pythonista</small>
                                     <small class="animated-item">Web Developer</small>
                                 </div>
                         </h1>
-
-                        <p>I'm Python Developer with over 2 years of experience in full stack Web Development. Building a successful product is a challenge. I am highly inclined towards user experience design, interfaces and web development.</p>
-                        
+                        {% for each in intro %}
+                        <p>{{each.about|safe}}</p>
+                        {% endfor %}                        
                         <div class="custom-btn-group mt-4">
                           <a href="{% url 'download_resume' %}" class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i> Download Resume</a>
                           <a href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link">Contact Me</a>
@@ -110,8 +119,9 @@ https://www.tooplate.com/view/2115-marvel
                         </div>
                     </div>
                 </div>
+                
 
-                <div class="col-lg-4 col-md-12 col-12">
+                <div class="col-lg-5 col-md-12 col-12">
                     <div class="about-image svg">
                         <img src="{%  static 'images/disp.svg' %}" class="img-fluid" alt="svg image">
                     </div>
@@ -120,6 +130,8 @@ https://www.tooplate.com/view/2115-marvel
             </div>
         </div>
     </section>
+   
+  
 
     <!-- PROJECTS -->
     <section class="project py-5" id="project">
@@ -129,45 +141,61 @@ https://www.tooplate.com/view/2115-marvel
                   <div class="col-lg-11 text-center mx-auto col-12">
 
                       <div class="col-lg-8 mx-auto">
-                        <h2>Websites I have developed</h2>
+                        <h2>Some of projects completed so far..</h2> <br>
                       </div>
 
                       <div class="owl-carousel owl-theme">
                         <div class="item">
                           <div class="project-info">
-                            <img src="images/project/project-image01.png" class="img-fluid" alt="project image">
+                            <img src="{% static 'images/project/greatkart.jpeg' %}" class="img-fluid" alt="project image">
                           </div>
                         </div>
 
                         <div class="item">
                           <div class="project-info">
-                            <img src="images/project/project-image02.png" class="img-fluid" alt="project image">
+                            <img src="{% static 'images/project/katalogix.png' %}" class="img-fluid" alt="project image">
                           </div>
                         </div>
 
                         <div class="item">
                           <div class="project-info">
-                            <img src="images/project/project-image03.png" class="img-fluid" alt="project image">
+                            <img src="{% static 'images/project/workbench.png' %}" class="img-fluid" alt="project image">
                           </div>
                         </div>
 
                         <div class="item">
                           <div class="project-info">
-                            <img src="images/project/project-image04.png" class="img-fluid" alt="project image">
+                            <img src="{% static 'images/project/thethechguy.png' %}" class="img-fluid" alt="project image">
                           </div>
                         </div>
 
-                        <div class="item">
+                        <!-- <div class="item">
                           <div class="project-info">
-                            <img src="images/project/project-image05.png" class="img-fluid" alt="project image">
+                            <img src="images/project/thetechguy.png" class="img-fluid" alt="project image">
                           </div>
-                        </div>
+                        </div> -->
                       </div>
-
-                  </div>
+                     </div>
                 </div>
         </div>
     </section>
+
+    
+
+    <!--Skills-->
+    <div class="container">
+      <div class="row">
+        {% for skill in skills %}
+        <div class="mx-auto">
+          <h5><span class="badge badge-pill badge-info ml-2 p-3">{{skill.skill}}</span></h5>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--Skills End-->
+
+ 
+
 
     <!-- FEATURES -->
     <section class="resume py-5 d-lg-flex justify-content-center align-items-center" id="resume">
@@ -175,7 +203,7 @@ https://www.tooplate.com/view/2115-marvel
             <div class="row">
 
                 <div class="col-lg-6 col-12">
-                  <h2 class="mb-4">Experiences</h2>
+                  <h2 class="mb-4">Experience</h2>
                     {% for item in exp %}
                     <div class="timeline">
                         <div class="timeline-wrapper">
@@ -184,7 +212,7 @@ https://www.tooplate.com/view/2115-marvel
                              </div>
                              <div class="timeline-info">
                                   <h4><span>{{item.designation}}</span><small>{{item.comapny_name}}</small></h4>
-                                  <p>{{item.project_details|truncatechars:150}}</p>
+                                  <p>{{item.project_details|safe}}</p>
                              </div>
                         </div>
                     </div>
@@ -193,15 +221,17 @@ https://www.tooplate.com/view/2115-marvel
                 
 
                 <div class="col-lg-6 col-12">
-                  <h2 class="mb-4 mobile-mt-2">Educations</h2>
+                  <h2 class="mb-4 mobile-mt-2">Education</h2>
                     <div class="timeline">
                         <div class="timeline-wrapper">
                              <div class="timeline-yr">
                                   <span>2017</span>
                              </div>
                              <div class="timeline-info">
-                                  <h3><span>E.E.E.</span><small>B.N.M Intitute of Technology | 71.3 % | V.T.U</small></h3>
-                                  <p>Please tell your friends about Tooplate website. That would be very helpful. We need your support.</p>
+                                  <h3><span>E.E.E.</span><small>B.N.M Intitute of Technology | 71.30 % | V.T.U</small></h3>
+                                  <p>Graduated from BNMIT, Bangalore in 2017 with FCD. I was an active member of 'Coding Club'. Along with that I was highly 
+                                      inlined towards co-curricular activities and was an active member of NSS (National Service Scheme).Scored 63 marks with a score of 599 in GATE 2019.
+                                  </p>
                              </div>
                         </div>
 
@@ -211,7 +241,7 @@ https://www.tooplate.com/view/2115-marvel
                             </div>
                             <div class="timeline-info">
                                 <h4><span>D.A.V Public School</span><small>12th | 81.80 % | C.B.S.E</small></h4>
-                                <p><a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a> is a great website to download HTML templates without any login or email.</p>
+                                <p>Passed Higher Secondary School from D.A.V Public School, Patna with 81.8% marks.Major Subjects were Maths, English, Physics, Chemistry and Physical Education</p>
                             </div>
                         </div>
                         
@@ -221,7 +251,7 @@ https://www.tooplate.com/view/2115-marvel
                             </div>
                             <div class="timeline-info">
                                 <h4><span>D.A.V Public School</span><small>10th | 91.30 % | C.B.S.E</small></h4>
-                                <p>You can freely use Tooplate's templates for your business or personal sites. You cannot redistribute this template without a permission.</p>
+                                <p>Passed Secondary School from D.A.V Public School, Patna with a CGPA of 9.6. Major subjects were Sanskrit, English, Maths, Science and Introductory IT</p>
                             </div>
                         </div>
 
@@ -232,6 +262,8 @@ https://www.tooplate.com/view/2115-marvel
         </div>
     </section>
 
+   
+
     <!-- CONTACT -->
     <section class="contact py-5" id="contact">
       <div class="container">
@@ -239,17 +271,22 @@ https://www.tooplate.com/view/2115-marvel
           
           <div class="col-lg-5 mr-lg-5 col-12">
             <div class="google-map w-100">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12088.558402180099!2d-73.99373482142036!3d40.75895421922642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855b8fb3083%3A0xa0f9aef176042a5c!2sTheater+District%2C+New+York%2C+NY%2C+USA!5e0!3m2!1sen!2smm!4v1549875377188" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7777.201489697484!2d77.62433552375471!3d12.93336306352369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae145c8e3331e5%3A0x6afd3de02521f6f4!2sKoramangala%204th%20Block%2C%20Koramangala%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1645207159715!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>              </div>
 
-            <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
+            <div class="contact-info justify-content-between align-items-center py-4">
                 <div class="contact-info-item">
                   
                 </div>
 
-                <ul class="social-links">
-                     <li><a href="#" class="uil uil-instagram" data-toggle="tooltip" data-placement="left" title="Instagram"></a></li>
-                     <li><a href="#" class="uil uil-youtube" data-toggle="tooltip" data-placement="left" title="Youtube"></a></li>
+                <ul>
+                    <div class="d-flex justify-content-center mt-auto">
+                        <a class="mx-2" href="https://github.com/sushant1058git" target ="_blank"><i class="fab fa-github"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-twitter" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-facebook-f" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-linkedin-in" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-instagram" target ="_blank"></i></a>
+                        <a class="mx-2" href="#"><i class="fab fa-youtube" target ="_blank"></i></a>
+                    </div>
                 </ul>
             </div>
           </div>

@@ -14,7 +14,7 @@
 					</div>
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
 					<p class="mb-3">
-						{{first.detail |truncatechars:400 }}<a href="{% url 'single_blog' first.id %}">Read More</a>
+						{{first.detail |safe|truncatechars:400 }}<a href="{% url 'single_blog' first.id %}">Read More</a>
 					</p>
 				</div>
 				<div class="col-md-6 d-none d-md-block pr-0 pt-5 mt-4" ><img style="background-size: cover;" src="{{ first.image.url }}" alt="">	</div>
