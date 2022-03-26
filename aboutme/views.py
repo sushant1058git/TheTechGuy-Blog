@@ -64,6 +64,18 @@ def blog_contact(request):
                 to_email,
                 fail_silently=False,
             )
+            to_email = [EMAIL_HOST_USER,]
+            contact_message = f"Hey TheTechGuy, you have new message.\nName: {name}.\nSubject:{subject}\nMessage:{message}"
+            contact_subject ="New message !!"
+
+            send_mail(
+                contact_subject,
+                contact_message,
+                from_email,
+                to_email,
+                fail_silently=False,
+            )
+            
             messages.success(request,"Thanks for contacting.!!")
             
 

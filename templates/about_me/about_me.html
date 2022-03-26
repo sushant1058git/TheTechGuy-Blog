@@ -180,14 +180,14 @@
         </div>
     </section>
 
-    
+
 
     <!--Skills-->
     <div class="container">
       <div class="row">
         {% for skill in skills %}
         <div class="mx-auto">
-          <h5><span class="badge badge-pill badge-info ml-2 p-3">{{skill.skill}}</span></h5>
+          <a href=""><h5><span class="badge badge-pill badge-info ml-2 p-3">{{skill.skill}}</span></h5></a>
         </div>
         {% endfor %}
       </div>
@@ -204,19 +204,20 @@
 
                 <div class="col-lg-6 col-12">
                   <h2 class="mb-4">Experience</h2>
-                    {% for item in exp %}
                     <div class="timeline">
+                      {% for item in exp %}
                         <div class="timeline-wrapper">
                              <div class="timeline-yr">
-                                  <span>{{ item.join_date}}</span>
+                                  <span>{{ item.join_date|date:"Y"}}</span>
                              </div>
                              <div class="timeline-info">
                                   <h4><span>{{item.designation}}</span><small>{{item.comapny_name}}</small></h4>
                                   <p>{{item.project_details|safe}}</p>
                              </div>
                         </div>
+                        {% endfor %}
+
                     </div>
-                    {% endfor %}
                 </div>
                 
 
@@ -230,7 +231,7 @@
                              <div class="timeline-info">
                                   <h3><span>E.E.E.</span><small>B.N.M Intitute of Technology | 71.30 % | V.T.U</small></h3>
                                   <p>Graduated from BNMIT, Bangalore in 2017 with FCD. I was an active member of 'Coding Club'. Along with that I was highly 
-                                      inlined towards co-curricular activities and was an active member of NSS (National Service Scheme).Scored 63 marks with a score of 599 in GATE 2019.
+                                      inclined towards co-curricular activities and was an active member of NSS (National Service Scheme).Scored 63 marks with a score of 599 in GATE 2019.
                                   </p>
                              </div>
                         </div>
@@ -298,18 +299,18 @@
               <form action="{% url 'blog_contact' %}" method="post">{% csrf_token %}
                 <div class="row">
                   <div class="col-lg-6 col-12">
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
+                    <input type="text" required class="form-control" name="name" placeholder="Your Name" id="name">
                   </div>
 
                   <div class="col-lg-6 col-12">
-                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                    <input type="email" required class="form-control" name="email" placeholder="Email" id="email">
                   </div>
                   <div class="col-12">
-                    <textarea name="subject" rows="1" class="form-control" id="subject" placeholder="Subject"></textarea>
+                    <textarea name="subject" required rows="1" class="form-control" id="subject" placeholder="Subject"></textarea>
                   </div>
 
                   <div class="col-12">
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                    <textarea name="message" required rows="6" class="form-control" id="message" placeholder="Message"></textarea>
                   </div>
 
                   <div class="ml-auto col-lg-5 col-12">
