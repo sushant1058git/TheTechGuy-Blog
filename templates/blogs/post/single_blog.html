@@ -1,5 +1,5 @@
 {% extends 'home/base/base.html' %}
-{% block title %} {{post.title }} | MultiBlogs {% endblock %}
+{% block title %} {{post.title }} {% endblock %}
 {% block body %}
 <div class="container">
 	<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
@@ -23,19 +23,16 @@
 			{% endif %}
 
 					<p class="text-uppercase font-weight-bold">
-						<a class="text-danger" href="{% url 'catagory' post.id %}">{{post.catagories}}</a>
+						<a class="badge badge-warning" href="{% url 'catagory' post.id %}">{{post.catagories}}</a>
 					</p>
 					<h1 class="display-4 secondfont mb-3 font-weight-bold">{{ post.title }}</h1>
-					<p class="mb-3">
-						 Analysts told CNBC that the currency could hit anywhere between $1.35-$1.40 if the deal gets passed through the U.K. parliament.
-					</p>
 					<div class="d-flex align-items-center">
                     {% if p.author.author_image %}
                         <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
                     {% else %}
                         <img class="rounded-circle shadow" height="70" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
                     {% endif %}
-						<small class="ml-2"> {{ post.author.author.username }} <span class="text-muted d-block">{{post.created_at | timesince }} ago ; {{post.visit_count }} views </span>
+						<small class="ml-2"> {{ post.author|title }} <span class="text-muted d-block">{{post.created_at | timesince }} ago ; {{post.visit_count }} views </span>
 						</small>
 					</div>
 				</div>
@@ -138,14 +135,14 @@
 			
 			<div class="card border-0 mb-4 box-shadow h-xl-300">
 				<div style="background-image: url(./assets/img/demo/3.jpg); ">
-					<img src="{{ first.image_url }}" style="height: 200px; background-size: cover; background-repeat: no-repeat; width: 100%;" alt="">
+					<img src="{{ first.image_url }}" style="height: 350px; background-size: cover; background-repeat: no-repeat; width: 100%;" alt="">
 				</div>
 				<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
 					<h2 class="h4 font-weight-bold">
 					<a class="text-dark" href="{% url 'single_blog' first.id %}"> {{ first.title}} </a>
 					</h2>
 					<p class="card-text">
-						{{first.detail|truncatechars:200}}<a href="{% url 'single_blog' first.id %}">Read More</a>
+						{{first.detail|truncatechars:200|safe}}<a href="{% url 'single_blog' first.id %}">Read More</a>
 					</p>
 					<div>
 						<small class="d-block">
@@ -162,9 +159,9 @@
 			
 		</div>
 		
-		<div class="col-lg-6">
+		<div class="col-lg-6 mb-5 pb-5">
 			
-			<div class="flex-md-row mb-4 box-shadow h-xl-300">
+			<div class="flex-md-row mb-4 box-shadow h-xl-300 ">
 				{% for p in last %}
 				<div class="mb-3 d-flex align-items-center">
 					<img height="80" src="{{p.image_url}}">
@@ -185,7 +182,7 @@
 					</div>
 				</div>
 				{% endfor %}
-			</div>
+			</div><br><br><br>
 			
 			
 		</div>

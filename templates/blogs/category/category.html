@@ -32,7 +32,7 @@
 					<a class="text-dark" href="">{{ f_post.title }}</a>
 					</h2>
 					<p class="card-text">
-						{{ f_post.detail |truncatechars:400 }}<a href="{% url 'single_blog' f_post.id %}">Read More</a>
+						{{ f_post.detail |truncatechars:400|safe }}<a href="{% url 'single_blog' f_post.id %}">Read More</a>
 					</p>
 					<div>
 						{% if f_post.author.author_image %}
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<h5 class="font-weight-bold spanborder"><span>Recent Posts</span></h5>
+			<h5 class="font-weight-bold spanborder"><span>Recent Posts In Technology</span></h5>
             {% for p in post %}
 			<div class="mb-3 d-flex justify-content-between">
 				<div class="pr-3">
@@ -53,7 +53,7 @@
 					<a class="text-dark" href="{% url 'single_blog' p.id  %}"> {{ p.title }} </a>
 					</h2>
 					<p>
-                        {{ p.detail |truncatechars:200 }}<a href="{% url 'single_blog' p.id %}">Read More</a>
+                        {{ p.detail |truncatechars:200|safe }}<a href="{% url 'single_blog' p.id %}">Read More</a>
 					</p>
 					<div class="card-text text-muted small">
                         <!-- {% if p.author.author_image %}
@@ -109,7 +109,7 @@
 						<a href="./article.html" class="text-dark">{{ p.title }}</a>
 						</h6>
 						<p class="text-muted">
-							{{ p.author.author.username }} in <a class="text-dark" href="{% url 'catagory' p.id %}">{{ p.catagories }} </a>
+							{{ p.author.author.username|title }} in <a class="text-dark" href="{% url 'catagory' p.id %}">{{ p.catagories }} </a>
 						</p>
 						</span>
 						</li>

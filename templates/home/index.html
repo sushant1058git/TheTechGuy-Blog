@@ -10,6 +10,7 @@
 			<div class="row justify-content-between">
 				<div class="col-md-6 pt-6 pb-6 align-self-center">
 					<div>
+						<!-- <h4 class="text-danger">Featured</h4> -->
 						<small class="text-muted">{{ first.created_at | timesince }} ago .</small>
 					</div>
 					<h1 class="secondfont mb-3 font-weight-bold">{{ first.title }}</h1>
@@ -24,21 +25,10 @@
 </div>
 
 
-<div class="container">
+<div class="container pt-4 mb-6 pb-6" style="margin-bottom: 70px;">
+	<h5 class="font-weight-bold spanborder"><span>Top Stories</span></h5>
 	<div class="row">
-		{% for c in category %}
-		<ul class="">
-			<a href="{% url 'catagory' c.slug %}" class="badge badge-light">{{c.name}}</a>
-		</ul>
-		{% endfor %}
-	</div>
-</div>
-
-   
-<div class="container pt-4 pb-4 " style="margin-bottom: 70px;">
-	<div class="row">
-		<div class="col-lg-6">
-			
+		<div class="col-md-6">
 			<div class="card border-0 mb-4 box-shadow h-xl-300">
 				<div style="background-image: url(./assets/img/demo/3.jpg); ">
 					<img src="{{ s_post.image_url }}" style="height: 300px; background-size: cover; background-repeat: no-repeat; width: 100%;" alt="">
@@ -48,7 +38,7 @@
 					<a class="text-dark" href="{% url 'single_blog' s_post.id %}"> {{ s_post.title}} </a>
 					</h2>
 					<p class="card-text">
-						{{s_post.detail|truncatechars:250}}<a href="{% url 'single_blog' s_post.id %}">Read More</a>
+						{{s_post.detail|truncatechars:450|safe}}<a href="{% url 'single_blog' s_post.id %}">Read More</a>
 					</p>
 					<div>
 						<small class="d-block">
@@ -63,10 +53,10 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
-        
-		<div class="col-lg-6">
+
+
+		<div class="row col-md-6 justify-content-between">
             <div class="flex-md-row mb-4 box-shadow h-xl-300">
 				{% for p in last_post %}
 				<div class="mb-3 d-flex align-items-center">
@@ -83,13 +73,16 @@
                 {% endfor %}
 			</div>
 		</div>
-    </div>
-</div><br><br><br><br><br>
-<div class="container mt-6">
+	</div>
+</div>
+
+
+
+<br>
+<div class="container mt-6 pt-6">
 		<div class="row justify-content-between ">
 			<div class="col-md-8">
 				<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
-	
 				{% for p in post %}
 				<div class="mb-3 d-flex justify-content-between">
 					<div class="pr-3">
@@ -97,8 +90,8 @@
 						<a class="text-dark" style="text-decoration: none;" href="{% url 'single_blog' p.id %}">{{ p.title }}</a>
 						</h2>
 						<p>
-							{{ p.detail|truncatechars:200 }}<a href="{% url 'single_blog' p.id %}">Read More</a>
-						</p><br>
+							{{ p.detail|truncatechars:250|safe }}<a href="{% url 'single_blog' p.id %}">Read More</a>
+						</p>
 						<div class="card-text text-muted small">
 							<!-- {% if p.author.author_image %}
 								<img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
@@ -111,10 +104,12 @@
 						<small class="text-muted">{{p.created_at|timesince }} ago ; {{ p.visit_count}} views </small>
 					</div>
 					<img height="120" src="{{ p.image_url }}">
-				</div><br>
+				</div>
 				{% endfor %}
 			</div>
-			<div class="col-md-4 pl-4">
+	
+		<div class="row  col-md-4 justify-content-between ">
+			<div class="">
 				<h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
 				<ol class="list-featured">
 					{% for item in popular_list %}
@@ -123,9 +118,6 @@
 					<h6 class="font-weight-bold">
 					<a href="{% url 'single_blog' item.id %}" class="text-dark" style="text-decoration: none;">{{item.title}}</a>
 					</h6>
-					<p class="text-muted">
-	
-					</p>
 					</span>
 					</li>
 					{% endfor %}
