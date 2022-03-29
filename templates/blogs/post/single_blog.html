@@ -2,10 +2,13 @@
 {% block title %} {{post.title }} {% endblock %}
 {% block body %}
 <div class="container">
+	<style>
+        h1{text-align: center;}
+    </style>
 	<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
 		<div class="h-100 tofront">
 			<div class="row justify-content-between">
-				<div class="col-md-6 pt-6 pb-6 pr-6 align-self-center">
+				<div class="col-md-12 pt-6 mx-auto">
 
 								
 			{% if messages %}
@@ -23,9 +26,9 @@
 			{% endif %}
 
 					<p class="text-uppercase font-weight-bold">
-						<a class="badge badge-warning" href="{% url 'catagory' post.id %}">{{post.catagories}}</a>
+						<a class="badge badge-warning " href="{% url 'catagory' post.catagories.slug %}" >{{post.catagories}}</a>
 					</p>
-					<h1 class="display-4 secondfont mb-3 font-weight-bold">{{ post.title }}</h1>
+					<h1 class=" secondfont mb-3 font-weight-bold col-12">{{ post.title }}</h1>
 					<div class="d-flex align-items-center">
                     {% if p.author.author_image %}
                         <img height="20" class="rounded-circle shadow" style="border-radius: 50%;" src="{{ p.author.author_image.url }}">
@@ -36,7 +39,7 @@
 						</small>
 					</div>
 				</div>
-				<div class="col-md-6 pr-0 mt-6 pt-3">
+				<div class="col-md-12 pr-0 mt-3 pt-3">
 					<img src="{{post.image_url }}">
 				</div>
 			</div>
@@ -175,7 +178,7 @@
                         {% else %}
                             <img class="rounded-circle shadow" height="20" src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" alt=""> 
                         {% endif %} -->
-							 <a class="text-dark badge badge-light " href="{% url 'catagory' p.id %}">{{p.catagories }} </a>
+							 <a class="text-dark badge badge-light " href="{% url 'catagory' p.catagories.slug %}">{{p.catagories }} </a>
 						
 						</div>
 						<small class="text-muted">{{ p.created_at | timesince }} ago .  {{p.visit_count}} views</small>

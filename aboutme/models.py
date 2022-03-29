@@ -13,7 +13,7 @@ class AboutMe(models.Model):
     college=models.CharField(max_length=50,blank=True,null=True)
     degree=models.CharField(max_length=100,null=True,blank=True)
     experience=models.CharField(max_length=50,null=True,blank=True)
-    phone=models.CharField(max_length=12)
+    phone=models.CharField(max_length=15)
     email=models.EmailField(max_length=50,blank=True,null=True)
     current_address=models.TextField(max_length=100,blank=True, null=True)
     permanent_address=models.TextField(max_length=300,null=True,blank=True)
@@ -21,9 +21,12 @@ class AboutMe(models.Model):
     
 class Skills(models.Model):
    skill=models.CharField(max_length=250,null=True,blank=True)
+   
+   def __str__(self):
+       return self.skill
     
 class WorkExp(models.Model):
-    comapny_name=models.CharField(max_length=50,null=True,blank=True)
+    comapny_name=models.CharField(max_length=100,null=True,blank=True)
     join_date=models.DateField(null=True,blank=True)
     end_date=models.DateField(null=True, blank=True)
     project_title=models.CharField(max_length=100)
