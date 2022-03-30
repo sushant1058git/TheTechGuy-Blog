@@ -9,10 +9,24 @@ class AboutMe(models.Model):
     about=RichTextField(null=True,blank=True)
     name=models.CharField(max_length=30)
     dob=models.DateField()
-    school=models.CharField(max_length=50,blank=True,null=True)
+    sec_school=models.CharField(max_length=50,blank=True,null=True)
+    perc_in_sec_school=models.CharField(max_length=100,blank=True,null=True)
+    sec_school_board=models.CharField(max_length=50,null=True,blank=True)    
+    sec_school_year=models.CharField(max_length=50,null=True,blank=True)
+    sec_school_details=models.CharField(max_length=500,null=True,blank=True)
+    higher_sec_school=models.CharField(max_length=50,blank=True,null=True)
+    perc_in_higher_sec_school=models.CharField(max_length=100,blank=True,null=True)
+    higher_sec_school_board=models.CharField(max_length=50,null=True,blank=True)    
+    higher_sec_year=models.CharField(max_length=50,null=True,blank=True)
+    higher_sec_school_details=models.CharField(max_length=500,null=True,blank=True)
     college=models.CharField(max_length=50,blank=True,null=True)
     degree=models.CharField(max_length=100,null=True,blank=True)
+    college_year=models.CharField(max_length=100,null=True,blank=True)
+    university=models.CharField(max_length=100,null=True,blank=True)
+    college_details=models.CharField(max_length=500,null=True,blank=True)
+    perc_in_college=models.CharField(max_length=100,blank=True,null=True)
     experience=models.CharField(max_length=50,null=True,blank=True)
+    resume =models.FileField(upload_to='resume')
     phone=models.CharField(max_length=15)
     email=models.EmailField(max_length=50,blank=True,null=True)
     current_address=models.TextField(max_length=100,blank=True, null=True)
@@ -32,6 +46,7 @@ class WorkExp(models.Model):
     project_title=models.CharField(max_length=100)
     project_details=RichTextField(null=True, blank=True)
     designation=models.CharField(max_length=50)
+    
     
     def __str__(self):
         return self.comapny_name

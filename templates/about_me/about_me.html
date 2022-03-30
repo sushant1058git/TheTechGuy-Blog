@@ -28,9 +28,8 @@
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="/blog/"><i class='uil uil-user'></i> Sushant</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            <a class="navbar-brand" href="{% url 'home' %}"><i class='uil uil-user'></i> Sushant</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
@@ -49,7 +48,7 @@
                         <a href="#resume" class="nav-link"><span data-hover="Resume">Resume</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="/blog/" class="nav-link"><span data-hover="Blog">Blog</span></a>
+                        <a href="{% url 'home' %}" class="nav-link"><span data-hover="Blog">Blog</span></a>
                     </li>
                     <li class="nav-item">
                         <a href="#contact" class="nav-link"><span data-hover="Contact">Contact</span></a>
@@ -117,7 +116,7 @@
                         <div class="custom-btn-group mt-4">
                           <a href="{% url 'download_resume' %}" class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i> Download Resume</a>
                           <a href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link">Contact Me</a>
-                          <a href="https://github.com/sushant1058git" class="btn custom-btn custom-btn-bg custom-btn-link" target="_blank">My Projects</a>
+                          <a href="https://github.com/sushant1058git" class="btn custom-btn custom-btn-bg custom-btn-link" target="_blank">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -188,7 +187,7 @@
     <div class="container">
       <div class="row">
         {% for skill in skills %}
-        <div class="mx-auto">
+        <div class="">
           <a href=""><h5><span class="badge badge-pill badge-dark ml-2 p-3">{{skill.skill}}</span></h5></a>
         </div>
         {% endfor %}

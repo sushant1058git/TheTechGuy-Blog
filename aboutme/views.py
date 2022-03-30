@@ -9,6 +9,8 @@ from Blog.settings import *
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from Blog.settings import EMAIL_HOST_USER
+import socket
+
 
 
 # Create your views here.
@@ -26,11 +28,10 @@ def about_me(request):
 
 
 def download_resume(request):
-    # import pdb;pdb.set_trace()
+    about_me=AboutMe.objects.all().order_by('-id').first()
+    file_name=about_me.resume
     fs = FileSystemStorage()
-    # print(BASE_DIR)
-    filename = str(BASE_DIR)+'/media/Resume/Sushant_Resume.pdf'
-    # print(filename)
+    filename = str(BASE_DIR)+'/media/'+ str(file_name)
     if fs.exists(filename):
         with fs.open(filename) as pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
@@ -40,7 +41,6 @@ def download_resume(request):
         return HttpResponseNotFound('The requested pdf was not found in our server.')
     
 
-import socket
             
 def blog_contact(request):
     if request.method == 'POST':
