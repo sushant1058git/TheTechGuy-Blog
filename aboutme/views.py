@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from Blog.settings import EMAIL_HOST_USER
 import socket
-
+1
 
 
 # Create your views here.
@@ -18,11 +18,21 @@ def about_me(request):
     intro=AboutMe.objects.all()
     skills=Skills.objects.all()
     exp=WorkExp.objects.all()[::-1]
+    education=Education.objects.all().order_by('-year')
+    source_map=Map.objects.all().first()
+    urls=SocialLinks.objects.all()
+    proj_image=ProjectImage.objects.all()
+    
     print(exp)
+    
     context={
         'intro':intro,
         'skills':skills,
-        'exp':exp
+        'exp':exp,
+        'education':education,
+        'source_map':source_map,
+        'urls':urls,
+        'proj_image':proj_image
     }
     return render(request,'about_me/about_me.html', context)
 

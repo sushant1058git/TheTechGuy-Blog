@@ -11,8 +11,11 @@ class ContactAdmin(ImportExportMixin,admin.ModelAdmin):
 
 
 admin.site.register(AboutMe)
+admin.site.register(Education)
 admin.site.register(Skills)
 admin.site.register(WorkExp)
 admin.site.register(PersonalProjects)
+admin.site.register(Map)
+admin.site.register(ProjectImage)
 admin.site.register(SocialLinks)
 admin.site.register(Contact, ContactAdmin)
