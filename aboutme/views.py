@@ -22,9 +22,7 @@ def about_me(request):
     source_map=Map.objects.all().first()
     urls=SocialLinks.objects.all()
     proj_image=ProjectImage.objects.all()
-    
-    print(exp)
-    
+        
     context={
         'intro':intro,
         'skills':skills,

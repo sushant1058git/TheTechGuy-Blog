@@ -95,7 +95,7 @@
 				</div>
 			</div>
 
-			<form style="margin-top:50px;" action="{% url 'comment' post.id  %}" method="POST">
+			<!-- <form style="margin-top:50px;" action="{% url 'comment' post.id  %}" method="POST">
 				{% csrf_token %}
 				<div class="row form-group">
 					<div class="col">
@@ -107,10 +107,10 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-round">Submit Comment </button>
 			</form>
-			<br>
+			<br> -->
 
 
-				{% for p in post.comments.all  reversed %}
+				<!-- {% for p in post.comments.all  reversed %}
 				{% if forloop.counter|divisibleby:2 %}
 				<div style="border-radius: 10px; margin: 5px; padding: 25px; background-color: #d8d8d8; ">
 					<p><strong>{{ p.name }}</strong> at {{ p.created_at }}</p>
@@ -122,7 +122,7 @@
 					<p style="padding: 20px; background-color: #c5e6d3; border-radius: 7px; border:0.5px solid #c5c5c5">{{ p.body }}</p>
 				</div>
 				{% endif %}
-				{% endfor %}
+				{% endfor %} -->
 		</div>
 	</div>
 </div>

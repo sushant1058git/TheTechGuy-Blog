@@ -142,30 +142,13 @@
                       </div>
 
                       <div class="owl-carousel owl-theme">
+                        {% for image in proj_image %}
                         <div class="item">
                           <div class="project-info">
-                            <img src="{% static 'images/project/greatkart.jpeg' %}" class="img-fluid" alt="project image">
+                            <img src="{{ image.project_image.url }}" class="img-fluid" alt="project image">
                           </div>
                         </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="{% static 'images/project/katalogix.png' %}" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="{% static 'images/project/workbench.png' %}" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="{% static 'images/project/thethechguy.png' %}" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
+                        {% endfor %}
                         <!-- <div class="item">
                           <div class="project-info">
                             <img src="images/project/thetechguy.png" class="img-fluid" alt="project image">
