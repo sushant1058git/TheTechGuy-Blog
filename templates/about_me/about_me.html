@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
     <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -58,16 +58,19 @@
                 <ul>
                     <div class="d-flex justify-content-center mt-auto">
                       {% for url in urls %}
-                        <a class="mx-2" href="{{url.url}}" target ="_blank"><i class="fab fa-{{url.name}}"></i></a>
+                        <a class="mx-2" href="{{url.url}}" title="{{url.name}}" target ="_blank"><i class="fab fa-{{url.name}}"></i></a>
                       {% endfor %}
                     </div>
                 </ul>
 
                 <ul class="navbar-nav ml-lg-auto">
-                    <div class="ml-lg-4">
-                      <div class="color-mode d-lg-flex justify-content-center align-items-center">
-                        <!-- <i class="color-mode-icon"></i> -->
-                        <!-- Color mode -->
+                    <div>
+                      <div>
+                        <h6 title="Call to get in touch !!">
+                        {% for call in intro%}
+                            {{call.phone}}
+                          {% endfor %}
+                        </h6>
                       </div>
                     </div>
                 </ul>
@@ -137,7 +140,7 @@
                 <div class="row">
                   <div class="col-lg-11 text-center mx-auto col-12">
 
-                      <div class="col-lg-10 mx-auto">
+                      <div class="col-lg-12 mx-auto ">
                         <h2>Some of the projects completed so far..</h2> <br>
                       </div>
 
@@ -145,7 +148,7 @@
                         {% for image in proj_image %}
                         <div class="item">
                           <div class="project-info">
-                            <img src="{{ image.project_image.url }}" class="img-fluid" alt="project image">
+                            <img src="{{ image.project_image.url }}" title="{{image.image_name}}" class="img-fluid" alt="project image">
                           </div>
                         </div>
                         {% endfor %}
@@ -223,29 +226,14 @@
 
     <!---Personal Projects-->
 
-    <!-- <section class="d-lg-flex justify-content-center ">
-      <div class="container">
-          <div class=" mx-auto align-items-center ">
-            <h2 >Personal Projects</h2> <br>
-          </div>
-              <ul >
-                      {% for projects in personal_projects%}
-                        <li><p>{{projects.project_summary|safe}} </p></li>
-                      {% endfor %}
-              </ul>
-      </div>
-    </section> -->
-
-
     <section>
-      
      <div class="container">
-      <h1 class="mx-auto align-center">
+      <h1 class="personal_projects mb-3 pb-3">
         Personal Projects
       </h1>
       {% for project in personal_projects %}
       <details>
-        <summary>{{project.project_name}}</summary>
+        <summary >{{project.project_name}}</summary>
         <p>{{project.project_summary|safe}}</p>
       </details>
       {% endfor%}
