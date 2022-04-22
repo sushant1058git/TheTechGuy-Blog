@@ -53,8 +53,11 @@ class WorkExp(models.Model):
     
 class PersonalProjects(models.Model):
     project_name=models.CharField(max_length=200)
-    project_summary=models.TextField(max_length=500, null=True,blank=True)
+    project_summary=RichTextField(null=True, blank=True)
     technologies_used=models.ForeignKey(Skills,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.project_name
     
 
 class SocialLinks(models.Model):
@@ -84,3 +87,6 @@ class Map(models.Model):
 class ProjectImage(models.Model):
     project_image=models.ImageField(upload_to='project')
     image_name=models.CharField(max_length=100,null=True,blank=True)
+    
+    def __str__(self):
+        return self.image_name

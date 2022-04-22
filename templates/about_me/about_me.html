@@ -221,10 +221,41 @@
         </div>
     </section>
 
+    <!---Personal Projects-->
+
+    <!-- <section class="d-lg-flex justify-content-center ">
+      <div class="container">
+          <div class=" mx-auto align-items-center ">
+            <h2 >Personal Projects</h2> <br>
+          </div>
+              <ul >
+                      {% for projects in personal_projects%}
+                        <li><p>{{projects.project_summary|safe}} </p></li>
+                      {% endfor %}
+              </ul>
+      </div>
+    </section> -->
+
+
+    <section>
+      
+     <div class="container">
+      <h1 class="mx-auto align-center">
+        Personal Projects
+      </h1>
+      {% for project in personal_projects %}
+      <details>
+        <summary>{{project.project_name}}</summary>
+        <p>{{project.project_summary|safe}}</p>
+      </details>
+      {% endfor%}
+     </div>
+    </section>
+    
    
 
     <!-- CONTACT -->
-    <section class="contact py-5" id="contact">
+    <section class="contact py-5 mt-5" id="contact">
       <div class="container">
         <div class="row">
           

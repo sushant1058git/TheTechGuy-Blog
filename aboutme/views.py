@@ -22,6 +22,7 @@ def about_me(request):
     source_map=Map.objects.all().first()
     urls=SocialLinks.objects.all()
     proj_image=ProjectImage.objects.all()
+    personal_projects=PersonalProjects.objects.all()
         
     context={
         'intro':intro,
@@ -30,7 +31,8 @@ def about_me(request):
         'education':education,
         'source_map':source_map,
         'urls':urls,
-        'proj_image':proj_image
+        'proj_image':proj_image,
+        'personal_projects':personal_projects
     }
     return render(request,'about_me/about_me.html', context)
 

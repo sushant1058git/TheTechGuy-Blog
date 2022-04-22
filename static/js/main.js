@@ -422,3 +422,15 @@ $(function () {
         return false;
     })
 });
+
+// $(document).ready(function(){
+//   $(".block").slice(0, 4).show();
+//   $("#loadMore").on("click", function(e){
+//     e.preventDefault();
+//     $(".block:hidden").slice(0, 4).slideDown();
+//     if($(".block:hidden").length == 0) {
+//       $("#loadMore").text("No Content").addClass("noContent");
+//     }
+//   });
+  
+// })
